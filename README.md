@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# trip-insurance-quote
+This application was made using react and uses a authentication token to access the backend lambda function.
+the lambda arthurizer access the key through aws secrets manager and react accesses the key through a .env variable 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+a build of this site can be accessed here https://d21haklx9d94f7.cloudfront.net/
 
 ## Available Scripts
 
