@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { useState } from 'react';
 import './App.css';
 
@@ -13,7 +12,7 @@ function App() {
   
 /**
  * addAge function
- * used to add an age to array and validate that
+ * used to add an age to array and validate the
  * first age is not under 18 and the other ages are not 0 or blank
  */
   function addAge(event){
@@ -21,7 +20,7 @@ function App() {
     document.getElementById("newAge").value = ''
     setNewAge('')
     if (newAge > 0 ){
-        if(age.length == 0 && newAge < 18){
+        if(age.length === 0 && newAge < 18){
           alert("First Age must be 18 or over")
           }else{
             setAge([...age, newAge])
@@ -76,12 +75,25 @@ function App() {
 
   return (
     <div className="App">
+       {/**
+        * a seperate form is used to add ages the the array
+        * 
+        */}
       <form onSubmit={addAge}>
-            {age.map((object,x) => (<div key={x}>age of person {x+1} is {age[x]}</div>))}
+
+            
+            {
+            /**
+            * mapping ages
+            * 
+            */
+            age.map((object,x) => (<div key={x}>age of person {x+1} is {age[x]}</div>))}
             <input onChange={event => setNewAge(event.target.value)} id='newAge' type="number" placeholder="age" ></input>
             <br/>
             <button  type="submit">Add age</button>
         </form>
+
+
       <form onSubmit={fetchQuote}>
             <select onChange={event => setCurrency_id(event.target.value)} id="currency" defaultValue="USD" name="currency">
               <option value="USD">USD</option>
@@ -94,7 +106,7 @@ function App() {
             min="2022-01-01" max="2025-12-31"></input>
             <br/>
             <input onChange={event => setEnd_date(event.target.value)} type="date" id="end_date" name="end_date"
-            
+            //setting min to start_date ensures the end_date is after start_date
             min={start_date} max="2025-12-31"></input>
             <br/>
             <button  type="submit">Get Quote</button>

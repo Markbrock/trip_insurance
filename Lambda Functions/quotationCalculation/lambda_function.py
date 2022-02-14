@@ -40,9 +40,10 @@ def quoteTotal(age,trip_length):
         print("the age load for the person is: " ,  ageLoad(x))
         # -total calculation
         # -round() is used to prevent displaying floats
-        total +=  round((fixed_rate * ageLoad(x) * trip_length),2)
+        total += round((fixed_rate * ageLoad(x) * trip_length),2)
+       
         
-    return total
+    return '{:,.2f}'.format(total)
         
         
     
