@@ -1,6 +1,6 @@
 # trip-insurance-quote
-This application was made using react and uses a authentication token to access the backend lambda function.
-the lambda arthurizer access the key through aws secrets manager and react accesses the key through a .env variable 
+This application was made using react and uses an authentication token to access the backend lambda function.
+the lambda arthorizer access the key through aws secrets manager and react accesses the key through a .env variable 
 
 a build of this site can be accessed here https://d21haklx9d94f7.cloudfront.net/
 
