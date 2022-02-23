@@ -88,7 +88,7 @@ function App() {
             * 
             */
             age.map((object,x) => (<div key={x}>age of person {x+1} is {age[x]}</div>))}
-            <input onChange={event => setNewAge(event.target.value)} id='newAge' type="number" placeholder="age" ></input>
+            <input onChange={event => setNewAge(event.target.value)} max="70" id='newAge' type="number" placeholder="age" ></input>
             <br/>
             <button  type="submit">Add age</button>
         </form>
