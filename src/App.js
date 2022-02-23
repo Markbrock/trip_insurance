@@ -9,6 +9,7 @@ function App() {
   const [start_date,setStart_date] = useState('')
   const [end_date,setEnd_date] = useState('')
   const [quote,setQuote] = useState('')
+  const [quotefetched,setQuotefetched] = useState(false)
   
 /**
  * addAge function
@@ -21,7 +22,7 @@ function App() {
     setNewAge('')
     if (newAge > 0 ){
         if(age.length === 0 && newAge < 18){
-          alert("First Age must be 18 or over")
+          alert("First group member must be 18 or over")
           }else{
             setAge([...age, newAge])
           }
@@ -58,39 +59,61 @@ function App() {
  * used to call postData() and format request data
  * 
  */
+
+  function returnQuote(){
+    if (quotefetched === true ){
+        return(<div><div>unique quotation id is {quote.quotation_id}</div>
+        <div>total cost for the trip is {quote.total} {quote.currency_id}</div></div>
+        ) }
+  }
   function fetchQuote(event){
     event.preventDefault()
+    if (age.length === 0){
+      return
+    } else if (start_date === ''){
+      return
+    } else if (end_date === ''){
+      return
+    }
     postData('https://2ndpt95a3e.execute-api.us-east-1.amazonaws.com/test/quotation', { age: age,
     currency_id: currency_id,
     start_date: start_date,
     end_date: end_date })
+    
   .then(data => {
     setQuote(data) // JSON data parsed by `data.json()` call
+    return setQuotefetched(true)
   });
-    
-   
+  console.log(quote)
+ 
   }
 
   
 
   return (
     <div className="App">
+      <h1>Trip Insurance</h1>
        {/**
         * a seperate form is used to add ages the the array
         * 
         */}
       <form onSubmit={addAge}>
-
+        
+            
             
             {
             /**
             * mapping ages
             * 
             */
-            age.map((object,x) => (<div key={x}>age of person {x+1} is {age[x]}</div>))}
+            age.map((object,x) => (<div key={x}>Age of Group Member {x+1} is {age[x]}</div>))}
+            
+            <div className='addMember'>
+            <label>Add group member</label>
             <input onChange={event => setNewAge(event.target.value)} max="70" id='newAge' type="number" placeholder="age" ></input>
+            </div>
             <br/>
-            <button  type="submit">Add age</button>
+            <button  type="submit">Add Member</button>
         </form>
 
 
@@ -111,8 +134,8 @@ function App() {
             <br/>
             <button  type="submit">Get Quote</button>
         </form>
-        <div>unique quotation id is {quote.quotation_id}</div>
-        <div>total cost for the trip is {quote.total} {quote.currency_id}</div>
+        {returnQuote()}
+        
         
         
     </div>
